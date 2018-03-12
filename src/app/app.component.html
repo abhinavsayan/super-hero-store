@@ -1,0 +1,11 @@
+<app-nav (action)='openView($event)'></app-nav>
+
+<div class="container">
+  <app-cart *ngIf='cart' (finalize)='checkout()'></app-cart>
+
+  <app-home *ngIf='shop' (buy)='buy()'></app-home>
+
+  <app-order *ngIf='order' ></app-order>
+
+
+</div>

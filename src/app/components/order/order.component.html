@@ -1,0 +1,126 @@
+<h1>Order Summary</h1>
+<br />
+
+<form-wizard [hidden]='orderDetails.orderID'>
+  <wizard-step [title]="'Personal Details'">
+    <div class="container">
+      <table class='table'>
+        <tr>
+          <td>Name</td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]='orderDetails.user.name'>
+          </td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]='orderDetails.user.email'>
+          </td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]='orderDetails.user.phone'>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </wizard-step>
+  <wizard-step [title]="'Shipping Details'">
+
+    <div class="container">
+      <table class='table'>
+        <tr>
+          <td>Address</td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]='orderDetails.address.address'>
+          </td>
+          <td>
+            <button type="button" class="btn btn-dark btn-sm" (click)="populateAddress()">Get My Address</button>
+          </td>
+        </tr>
+        <tr>
+          <td>Pincode</td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]='orderDetails.address.pin'>
+          </td>
+        </tr>
+        <tr>
+          <td>City</td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]='orderDetails.address.city'>
+          </td>
+        </tr>
+        <tr>
+          <td>State</td>
+          <td>
+            <input type="text" class="form-control" [(ngModel)]='orderDetails.address.state'>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </wizard-step>
+  <wizard-step [title]="'Order Summary'">
+    <div class="container">
+      <table class="table table-sm">
+        <tr>
+          <td>Item</td>
+          <td>Quantity</td>
+          <td>Price</td>
+          <td>Total</td>
+        </tr>
+        <tr *ngFor='let item of orderDetails.cart;'>
+          <td>
+            {{item.name}}
+          </td>
+          <td>
+            {{ item.quantity }}
+          </td>
+          <td>
+            $ {{ item.price }}
+          </td>
+          <td>
+            $ {{ item.price * item.quantity }}
+          </td>
+        </tr>
+      </table>
+    </div>
+  </wizard-step>
+  <wizard-step [title]="'Payment Details'" (onComplete)="onComplete($event)">
+
+    <div class="container">
+      <input type="radio" [(ngModel)]='orderDetails.payment' [value]="'creditCard'"> Credit Card
+      <br>
+
+      <input type="radio" [(ngModel)]='orderDetails.payment' [value]="'netBanking'"> Net Banking
+      <br>
+
+      <input type="radio" [(ngModel)]='orderDetails.payment' [value]="'cod'"> Cash On Delivery
+      <br>
+    </div>
+
+  </wizard-step>
+</form-wizard>
+
+
+<div class="alert alert-dismissible alert-success" *ngIf="orderDetails.orderID">
+  <p class="lead">Order Summary</p>
+  Order Id : {{orderDetails.orderId}}
+  <br> Sipping Details :
+  <br> {{orderDetails.user.name}},
+  <br> {{orderDetails.user.email}}
+  <br> {{orderDetails.address.address }}
+  <br>
+  <br> Order :
+  <table class="table summary">
+    <tr *ngFor='let item of orderDetails.cart;'>
+      <td>
+        {{item.name}}
+      </td>
+      <td>
+        {{ item.quantity }}
+      </td>
+    </tr>
+  </table>
+
+</div>

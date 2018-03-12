@@ -1,0 +1,22 @@
+.item{
+    width: 230px;
+    margin: 20px;
+    float: left;
+}
+.lead{
+    margin-left : 10px;
+    color: white;
+}
+
+button{
+    margin: 2px;
+}
+
+.image{
+    /* background-image: url("https://www.sideshowtoy.com/wp-content/uploads/2017/11/dc-comics-justice-league-batman-statue-prime1-studio-feature-903246-1.jpg"); */
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;
+    height: 120px;
+    width : 100%;
+}

@@ -1,0 +1,10 @@
+<div class="item">
+  <div class="image" [ngStyle]="{'background-image': 'url(' +  item.img  + ')'}">
+    <p class="lead">{{ item.name }}</p>
+  </div>
+
+  <button type="button" class="btn btn-dark btn-sm" (click)="buy()">Buy</button>
+  <button type="button" class="btn btn-dark btn-sm" (click)="add()">Add to cart</button>
+  $ {{ item.price }}
+
+</div>
